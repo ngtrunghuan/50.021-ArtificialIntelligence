@@ -1,0 +1,9 @@
+datasets
+inclass/data
+inclass/l08/imagespart
+inclass/l08/val
+inclass/l08/val_50000
+inclass/models
+**/.DS_Store
+**.zip
+**.pdf
