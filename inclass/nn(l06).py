@@ -12,7 +12,7 @@ use_cuda = torch.cuda.is_available()
 root = './data'
 if not os.path.exists(root):
     os.mkdir(root)
-    
+
 trans = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (1.0,))])
 # if not exist, download mnist dataset
 train_set = dset.MNIST(root=root, train=True, transform=trans, download=True)
@@ -45,7 +45,7 @@ class MLPNet(nn.Module):
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
         return x
-    
+
     def name(self):
         return "MLP"
 
@@ -66,7 +66,7 @@ class LeNet(nn.Module):
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
         return x
-    
+
     def name(self):
         return "LeNet"
 
@@ -109,8 +109,10 @@ for epoch in range(10):
         correct_cnt += (pred_label == target.data).sum().item()
         # smooth average
         ave_loss = ave_loss * 0.9 + loss.data[0] * 0.1
-        
+
         if(batch_idx+1) % 100 == 0 or (batch_idx+1) == len(test_loader):
             print ('==>>> epoch: {}, batch index: {}, test loss: {:.6f}, acc: {:.3f}'.format(epoch, batch_idx+1, ave_loss, correct_cnt * 1.0 / total_cnt))
 
 torch.save(model.state_dict(), model.name())
+
+print('test')
